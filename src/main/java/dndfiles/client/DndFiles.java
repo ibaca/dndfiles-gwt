@@ -1,89 +1,59 @@
 package dndfiles.client;
 
-import static com.google.gwt.safehtml.shared.SafeHtmlUtils.htmlEscape;
-import static elemental.events.Event.CHANGE;
-import static elemental.events.Event.COPY;
-import static elemental.events.Event.DRAGOVER;
-import static elemental.events.Event.DROP;
-
 import com.google.gwt.core.client.EntryPoint;
-import elemental.client.Browser;
-import elemental.dom.Clipboard;
-import elemental.dom.Document;
-import elemental.events.EventListener;
-import elemental.html.File;
-import elemental.html.FileList;
-import elemental.html.FileReader;
-import elemental.html.InputElement;
-import elemental.html.OutputElement;
-import elemental.html.Window;
+import elemental2.*;
+
+import static elemental2.Global.document;
 
 // http://www.html5rocks.com/en/tutorials/file/dndfiles/
 public class DndFiles implements EntryPoint {
-    private Window wnd;
-    private OutputElement list;
+    private HTMLOutputElement list;
 
-    @Override public void onModuleLoad() {
-        wnd = Browser.getWindow();
-        Document doc = Browser.getDocument();
+    @Override
+    public void onModuleLoad() {
+        HTMLInputElement file = (HTMLInputElement) Global.document.createElement("input");
+        file.type = "file";
+        file.id = "files";
+        file.name = "files[]";
+        file.multiple = true;
 
-        if (def(wnd, "File") && def(wnd, "FileReader") && def(wnd, "FileList") && def(wnd, "Blob")) {
-            // Great success! All the File APIs are supported.
-        } else {
-            wnd.alert("The File APIs are not fully supported in this browser.");
-        }
+        list = (HTMLOutputElement) document.createElement("output");
+        list.id = "list";
 
-        InputElement file = doc.createInputElement();
-        file.setType("file"); file.setId("files"); file.setName("files[]"); file.setMultiple(true);
+        document.body.appendChild(file);
+        document.body.appendChild(list);
 
-        list = doc.createOutputElement();
-        list.setId("list");
-
-        doc.getBody().appendChild(file);
-        doc.getBody().appendChild(list);
-
-        file.addEventListener(CHANGE, evt -> show(((InputElement) evt.getTarget()).getFiles()), false);
-
-        doc.getBody().addEventListener(DRAGOVER, evt -> {
-            evt.stopPropagation();
-            evt.preventDefault();
-            js(evt, "dataTransfer", Clipboard.class).setDropEffect(COPY);
+        file.addEventListener("change", evt -> {
+            show(((HTMLInputElement) evt.target).files);
         }, false);
-        doc.getBody().addEventListener(DROP, evt -> {
+
+        document.body.addEventListener("dragover", evt -> {
             evt.stopPropagation();
             evt.preventDefault();
-            show(js(evt, "dataTransfer", Clipboard.class).getFiles());
+            ((DragEvent) evt).dataTransfer.dropEffect = "copy";
+        }, false);
+        document.body.addEventListener("drop", evt -> {
+            evt.stopPropagation();
+            evt.preventDefault();
+            show(((DragEvent) evt).dataTransfer.files);
         }, false);
     }
 
     private void show(FileList files) {
-        String out = "";
-        for (int i = 0; i < files.length(); i++) {
+        for (int i = 0; i < files.length; i++) {
             File f = files.item(i);
 
-            final String name = htmlEscape(f.getName());
-            final String type = htmlEscape(f.getType());
-            out += "<li><strong>" + name + "</strong> (" + type + ") - " + f.getSize() + " bytes, "
-                    + "last modified: " + f.getLastModifiedDate() + "</li>";
+            final String name = document.createTextNode(f.name).wholeText;
+            final String type = document.createTextNode(f.type).wholeText;
+            list.innerHTML += "<li><strong>" + name + "</strong> (" + type + ") - " + f.size + " bytes, "
+                    + "last modified: " + f.lastModifiedDate;
 
-            FileReader reader = wnd.newFileReader();
-            final EventListener eventListener = loaded -> {
-                wnd.getConsole().log(loaded);
-                wnd.getConsole().log(reader.getResult());
+            FileReader reader = new FileReader();
+            reader.onprogress = loaded -> {
+                list.innerHTML += "<li>loading... " + loaded.loaded + "/" + loaded.total;
+                return null;
             };
-            reader.setOnload(eventListener);
             reader.readAsBinaryString(f);
         }
-        list.setInnerHTML("<ul>" + out + "</ul>");
     }
-
-    static <T> T js(Object jso, String property, Class<T> as) { return js(jso, property); }
-
-    static boolean def(Object jso, String property) { return js(jso, property) != null; }
-
-    static native <T> T js(Object jso, String property) /*-{
-        return property.split(".").reduce(function (acc, x) {
-            return acc && acc[x];
-        }, jso);
-    }-*/;
 }
