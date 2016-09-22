@@ -334,7 +334,7 @@ function dndfiles(){
     }
     var strongName;
     try {
-      strongName = 'AD10DA804219EA18133F0638D0B0FA2F';
+      strongName = '10CCA7232BC337751BC837A82184EE44';
       var idx = strongName.indexOf(':');
       if (idx != -1) {
         softPermutationId = parseInt(strongName.substring(idx + 1), 10);

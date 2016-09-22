@@ -3,7 +3,7 @@ var __gwtModuleFunction = $wnd.dndfiles;
 var $sendStats = __gwtModuleFunction.__sendStats;
 $sendStats('moduleStartup', 'moduleEvalStart');
 var $gwt_version = "2.8.0-SNAPSHOT";
-var $strongName = 'AD10DA804219EA18133F0638D0B0FA2F';
+var $strongName = '10CCA7232BC337751BC837A82184EE44';
 var $gwt = {};
 var $doc = $wnd.document;
 var $moduleName, $moduleBase;
@@ -132,7 +132,7 @@ function bootstrap(){
 
 bootstrap();
 function $toString(this$static){
-  return $getName(getClass__Ljava_lang_Class___devirtual$(this$static)) + '@' + ((instanceOfString(this$static)?getHashCode_0(this$static):instanceOfDouble(this$static)?round_int((checkCriticalNotNull(this$static) , this$static)):instanceOfBoolean(this$static)?(checkCriticalNotNull(this$static) , this$static)?1231:1237:hasJavaObjectVirtualDispatch(this$static)?this$static.hashCode():isJavaArray(this$static)?getHashCode(this$static):getHashCode(this$static)) >>> 0).toString(16);
+  return $getName(getClass__Ljava_lang_Class___devirtual$(this$static)) + '@' + ((instanceOfString(this$static)?getHashCode_0(this$static):instanceOfDouble(this$static)?round_int((checkCriticalNotNull(this$static) , this$static)):instanceOfBoolean(this$static)?(checkCriticalNotNull(this$static) , this$static)?1231:1237:hasJavaObjectVirtualDispatch(this$static)?this$static.hashCode_0():isJavaArray(this$static)?getHashCode(this$static):!!this$static && !!this$static.hashCode?this$static.hashCode():getHashCode(this$static)) >>> 0).toString(16);
 }
 
 function Object_0(){
@@ -147,12 +147,16 @@ _.getClass_0 = function getClass_0(){
   return this.___clazz;
 }
 ;
-_.hashCode = function hashCode_0(){
+_.hashCode_0 = function hashCode_0(){
   return getHashCode(this);
 }
 ;
 _.toString_0 = function toString_0(){
   return $toString(this);
+}
+;
+_.hashCode = function(){
+  return this.hashCode_0();
 }
 ;
 _.toString = function(){
@@ -187,11 +191,11 @@ function supportsErrorStack(){
 }
 
 var collector;
-defineClass(45, 1, {});
+defineClass(46, 1, {});
 function StackTraceCreator$CollectorLegacy(){
 }
 
-defineClass(25, 45, {}, StackTraceCreator$CollectorLegacy);
+defineClass(25, 46, {}, StackTraceCreator$CollectorLegacy);
 _.collect = function collect(error){
   var seen = {}, name_1;
   var fnStack = [];
@@ -215,14 +219,14 @@ _.collect = function collect(error){
   }
 }
 ;
-defineClass(46, 45, {});
+defineClass(47, 46, {});
 _.collect = function collect_0(error){
 }
 ;
 function StackTraceCreator$CollectorModernNoSourceMap(){
 }
 
-defineClass(26, 46, {}, StackTraceCreator$CollectorModernNoSourceMap);
+defineClass(26, 47, {}, StackTraceCreator$CollectorModernNoSourceMap);
 function getClassLiteralForArray(clazz, dimensions){
   return getClassLiteralForArray_0(clazz, dimensions);
 }
@@ -340,10 +344,6 @@ function $clinit_Boolean(){
 function $isInstance(instance){
   $clinit_Boolean();
   return $equals('boolean', typeof instance);
-}
-
-function toString_2(x_0){
-  return $clinit_String() , '' + x_0;
 }
 
 booleanCastMap = {3:1, 23:1};
@@ -474,7 +474,7 @@ _.isPrimitive = function isPrimitive(){
   return (this.modifiers & 1) != 0;
 }
 ;
-_.toString_0 = function toString_3(){
+_.toString_0 = function toString_2(){
   return ((this.modifiers & 2) != 0?'interface ':(this.modifiers & 1) != 0?'':'class ') + ($ensureNamesAreInitialized(this) , this.typeName);
 }
 ;
@@ -529,7 +529,7 @@ _.getMessage = function getMessage(){
 ;
 _.initializeBackingError = function initializeBackingError(){
   var className, errorMessage, message;
-  message = this.detailMessage == null?null:toNative(this.detailMessage).replace(new $wnd.RegExp('\n', 'g'), ' ');
+  message = this.detailMessage == null?null:this.detailMessage.replace(new $wnd.RegExp('\n', 'g'), ' ');
   errorMessage = (className = $getName(this.___clazz) , message == null?className:className + ': ' + message);
   $setBackingJsObject(this, fixIE(this.createError(errorMessage)));
   captureStackTrace(this);
@@ -547,23 +547,19 @@ function RuntimeException(){
   this.initializeBackingError();
 }
 
-defineClass(8, 12, $intern_0);
+defineClass(9, 12, $intern_0);
 function ClassCastException(){
   RuntimeException.call(this);
 }
 
-defineClass(24, 8, $intern_0, ClassCastException);
+defineClass(24, 9, $intern_0, ClassCastException);
 function $isInstance_2(instance){
   return $equals('number', typeof instance) || instance instanceof Number;
 }
 
-defineClass(43, 1, {3:1});
+defineClass(44, 1, {3:1});
 function $isInstance_3(instance){
   return $equals('number', typeof instance);
-}
-
-function toString_4(b){
-  return $clinit_String() , '' + b;
 }
 
 doubleCastMap = {3:1, 23:1};
@@ -571,10 +567,10 @@ function JsException(backingJsObject){
   $fillInStackTrace(this);
   this.backingJsObject = backingJsObject;
   backingJsObject != null && setPropertySafe(backingJsObject, '__java$exception', this);
-  this.detailMessage = ($clinit_String() , backingJsObject == null?'null':instanceOfString(backingJsObject)?(checkCriticalNotNull(backingJsObject) , backingJsObject):instanceOfDouble(backingJsObject)?toString_4((checkCriticalNotNull(backingJsObject) , backingJsObject)):instanceOfBoolean(backingJsObject)?toString_2((checkCriticalNotNull(backingJsObject) , backingJsObject)):hasJavaObjectVirtualDispatch(backingJsObject)?backingJsObject.toString_0():isJavaArray(backingJsObject)?$toString(backingJsObject):backingJsObject.toString?backingJsObject.toString():'[JavaScriptObject]');
+  this.detailMessage = backingJsObject == null?'null':instanceOfString(backingJsObject)?(checkCriticalNotNull(backingJsObject) , backingJsObject):instanceOfDouble(backingJsObject)?'' + (checkCriticalNotNull(backingJsObject) , backingJsObject):instanceOfBoolean(backingJsObject)?'' + (checkCriticalNotNull(backingJsObject) , backingJsObject):hasJavaObjectVirtualDispatch(backingJsObject)?backingJsObject.toString_0():isJavaArray(backingJsObject)?$toString(backingJsObject):backingJsObject.toString?backingJsObject.toString():'[JavaScriptObject]';
 }
 
-defineClass(10, 8, $intern_0, JsException);
+defineClass(11, 9, $intern_0, JsException);
 function NullPointerException(){
   RuntimeException.call(this);
 }
@@ -583,18 +579,13 @@ function NullPointerException_0(typeError){
   JsException.call(this, typeError);
 }
 
-defineClass(16, 10, $intern_0, NullPointerException, NullPointerException_0);
+defineClass(16, 11, $intern_0, NullPointerException, NullPointerException_0);
 _.createError = function createError_0(msg){
   return new $wnd.TypeError(msg);
 }
 ;
-function $clinit_String(){
-  $clinit_String = emptyMethod;
-  new String$1;
-}
-
 function $charAt(this$static, index_0){
-  return ($clinit_String() , this$static).charCodeAt(index_0);
+  return this$static.charCodeAt(index_0);
 }
 
 function $equals(this$static, other){
@@ -602,20 +593,10 @@ function $equals(this$static, other){
 }
 
 function $isInstance_4(instance){
-  $clinit_String();
   return $equals('string', typeof instance);
 }
 
-function toNative(str){
-  $clinit_String();
-  return str;
-}
-
 stringCastMap = {3:1, 51:1, 23:1, 2:1};
-function String$1(){
-}
-
-defineClass(22, 1, {}, String$1);
 function checkCriticalNotNull(reference){
   if (reference == null) {
     throw toJs(new NullPointerException);
@@ -651,7 +632,7 @@ function $clinit_StringHashCache(){
 function compute(str){
   var hashCode, i, n, nBatch;
   hashCode = 0;
-  n = ($clinit_String() , str).length;
+  n = str.length;
   nBatch = n - 4;
   i = 0;
   while (i < nBatch) {
@@ -693,23 +674,22 @@ function increment(){
 var back_0, count = 0, front;
 var Ljava_lang_Object_2_classLit = createForClass('java.lang', 'Object', 1);
 var Lcom_google_gwt_core_client_JavaScriptObject_2_classLit = createForClass('com.google.gwt.core.client', 'JavaScriptObject$', 0);
-var Lcom_google_gwt_core_client_impl_StackTraceCreator$Collector_2_classLit = createForClass('com.google.gwt.core.client.impl', 'StackTraceCreator/Collector', 45);
+var Lcom_google_gwt_core_client_impl_StackTraceCreator$Collector_2_classLit = createForClass('com.google.gwt.core.client.impl', 'StackTraceCreator/Collector', 46);
 var Lcom_google_gwt_core_client_impl_StackTraceCreator$CollectorLegacy_2_classLit = createForClass('com.google.gwt.core.client.impl', 'StackTraceCreator/CollectorLegacy', 25);
-var Lcom_google_gwt_core_client_impl_StackTraceCreator$CollectorModern_2_classLit = createForClass('com.google.gwt.core.client.impl', 'StackTraceCreator/CollectorModern', 46);
+var Lcom_google_gwt_core_client_impl_StackTraceCreator$CollectorModern_2_classLit = createForClass('com.google.gwt.core.client.impl', 'StackTraceCreator/CollectorModern', 47);
 var Lcom_google_gwt_core_client_impl_StackTraceCreator$CollectorModernNoSourceMap_2_classLit = createForClass('com.google.gwt.core.client.impl', 'StackTraceCreator/CollectorModernNoSourceMap', 26);
-var Ljava_lang_Boolean_2_classLit = createForClass('java.lang', 'Boolean', 42);
+var Ljava_lang_Boolean_2_classLit = createForClass('java.lang', 'Boolean', 43);
 var Ljava_lang_Class_2_classLit = createForClass('java.lang', 'Class', 15);
 var Ljava_lang_Throwable_2_classLit = createForClass('java.lang', 'Throwable', 4);
 var Ljava_lang_Exception_2_classLit = createForClass('java.lang', 'Exception', 12);
-var Ljava_lang_RuntimeException_2_classLit = createForClass('java.lang', 'RuntimeException', 8);
+var Ljava_lang_RuntimeException_2_classLit = createForClass('java.lang', 'RuntimeException', 9);
 var Ljava_lang_ClassCastException_2_classLit = createForClass('java.lang', 'ClassCastException', 24);
-var Ljava_lang_Number_2_classLit = createForClass('java.lang', 'Number', 43);
-var Ljava_lang_Double_2_classLit = createForClass('java.lang', 'Double', 44);
-var Ljava_lang_JsException_2_classLit = createForClass('java.lang', 'JsException', 10);
+var Ljava_lang_Number_2_classLit = createForClass('java.lang', 'Number', 44);
+var Ljava_lang_Double_2_classLit = createForClass('java.lang', 'Double', 45);
+var Ljava_lang_JsException_2_classLit = createForClass('java.lang', 'JsException', 11);
 var Ljava_lang_NullPointerException_2_classLit = createForClass('java.lang', 'NullPointerException', 16);
 var Ljava_lang_String_2_classLit = createForClass('java.lang', 'String', 2);
-var Ljava_lang_String$1_2_classLit = createForClass('java.lang', 'String/1', 22);
-defineClass(27, 10, $intern_0);
+defineClass(27, 11, $intern_0);
 var Lcom_google_gwt_core_client_impl_JavaScriptExceptionBase_2_classLit = createForClass('com.google.gwt.core.client.impl', 'JavaScriptExceptionBase', 27);
 function $clinit_JavaScriptException(){
   $clinit_JavaScriptException = emptyMethod;
@@ -742,7 +722,7 @@ function getExceptionName0(e){
   return e == null?null:e.name;
 }
 
-defineClass(9, 27, {9:1, 3:1, 4:1}, JavaScriptException);
+defineClass(10, 27, {10:1, 3:1, 4:1}, JavaScriptException);
 _.getMessage = function getMessage_0(){
   $ensureInit(this);
   return this.message_0;
@@ -753,7 +733,7 @@ _.getThrown = function getThrown(){
 }
 ;
 var NOT_SET;
-var Lcom_google_gwt_core_client_JavaScriptException_2_classLit = createForClass('com.google.gwt.core.client', 'JavaScriptException', 9);
+var Lcom_google_gwt_core_client_JavaScriptException_2_classLit = createForClass('com.google.gwt.core.client', 'JavaScriptException', 10);
 function now_1(){
   if (Date.now) {
     return Date.now();
@@ -892,7 +872,7 @@ function runScheduledTasks(tasks, rescheduled){
       if (instanceOf($e0, 4)) {
         e = $e0;
         $clinit_Impl();
-        reportToBrowser(instanceOf(e, 9)?castTo(e, 9).getThrown():e);
+        reportToBrowser(instanceOf(e, 10)?castTo(e, 10).getThrown():e);
       }
        else 
         throw toJs($e0);
@@ -908,14 +888,14 @@ function init(){
   $onModuleLoad(new DndFiles);
 }
 
-function $lambda$2(this$static, evt_0){
-  evt_0.stopPropagation();
-  evt_0.preventDefault();
-  $show(this$static, castToNative(evt_0, $wnd.DragEvent).dataTransfer.files);
+function $lambda$2(this$static, e_0){
+  e_0.stopPropagation();
+  e_0.preventDefault();
+  $show(this$static, castToNative(e_0, $wnd.DragEvent).dataTransfer.files);
 }
 
-function $lambda$3(this$static, loaded_0){
-  this$static.list.innerHTML += '<li>loading... ' + loaded_0.loaded + '/' + loaded_0.total;
+function $lambda$3(this$static, e_0){
+  this$static.out.innerHTML += '<li>' + e_0.loaded / e_0.total;
   return null;
 }
 
@@ -926,22 +906,19 @@ function $onModuleLoad(this$static){
   file.id = 'files';
   file.name = 'files[]';
   file.multiple = true;
-  this$static.list = castToNative($wnd.window.document.createElement('output'), $wnd.HTMLOutputElement);
-  this$static.list.id = 'list';
+  this$static.out = castToNative($wnd.window.document.createElement('output'), $wnd.HTMLOutputElement);
   $wnd.window.document.body.appendChild(file);
-  $wnd.window.document.body.appendChild(this$static.list);
+  $wnd.window.document.body.appendChild(this$static.out);
   file.addEventListener('change', new DndFiles$lambda$0$Type(this$static), false);
   $wnd.window.document.body.addEventListener('dragover', new DndFiles$lambda$1$Type, false);
   $wnd.window.document.body.addEventListener('drop', new DndFiles$lambda$2$Type(this$static), false);
 }
 
 function $show(this$static, files){
-  var f, i, name_0, reader, type_0;
+  var f, i, reader;
   for (i = 0; i < files.length; i++) {
     f = files.item(i);
-    name_0 = $wnd.window.document.createTextNode(f.name).wholeText;
-    type_0 = $wnd.window.document.createTextNode(f.type).wholeText;
-    this$static.list.innerHTML += '<li><strong>' + name_0 + '<\/strong> (' + type_0 + ') - ' + f.size + ' bytes, ' + 'last modified: ' + f.lastModifiedDate;
+    this$static.out.innerHTML += '<li><strong>' + f.name + '<\/strong> (' + f.type + ') - ' + f.size + ' bytes, last modified: ' + f.lastModifiedDate;
     reader = new $wnd.FileReader;
     reader.onprogress = makeLambdaFunction(DndFiles$lambda$3$Type.prototype.onInvoke, DndFiles$lambda$3$Type, [this$static]);
     reader.readAsBinaryString(f);
@@ -951,39 +928,39 @@ function $show(this$static, files){
 function DndFiles(){
 }
 
-defineClass(18, 1, {}, DndFiles);
-var Ldndfiles_client_DndFiles_2_classLit = createForClass('dndfiles.client', 'DndFiles', 18);
+defineClass(19, 1, {}, DndFiles);
+var Ldndfiles_client_DndFiles_2_classLit = createForClass('dndfiles.client', 'DndFiles', 19);
 function DndFiles$lambda$0$Type($$outer_0){
   this.$$outer_0 = $$outer_0;
 }
 
-defineClass(19, 1, {}, DndFiles$lambda$0$Type);
+defineClass(20, 1, {}, DndFiles$lambda$0$Type);
 _.handleEvent = function handleEvent(arg0){
   $show(this.$$outer_0, castToNative(arg0.target, $wnd.HTMLInputElement).files);
 }
 ;
-var Ldndfiles_client_DndFiles$lambda$0$Type_2_classLit = createForClass('dndfiles.client', 'DndFiles/lambda$0$Type', 19);
+var Ldndfiles_client_DndFiles$lambda$0$Type_2_classLit = createForClass('dndfiles.client', 'DndFiles/lambda$0$Type', 20);
 function DndFiles$lambda$1$Type(){
 }
 
-defineClass(20, 1, {}, DndFiles$lambda$1$Type);
+defineClass(21, 1, {}, DndFiles$lambda$1$Type);
 _.handleEvent = function handleEvent_0(arg0){
   arg0.stopPropagation();
   arg0.preventDefault();
   castToNative(arg0, $wnd.DragEvent).dataTransfer.dropEffect = 'copy';
 }
 ;
-var Ldndfiles_client_DndFiles$lambda$1$Type_2_classLit = createForClass('dndfiles.client', 'DndFiles/lambda$1$Type', 20);
+var Ldndfiles_client_DndFiles$lambda$1$Type_2_classLit = createForClass('dndfiles.client', 'DndFiles/lambda$1$Type', 21);
 function DndFiles$lambda$2$Type($$outer_0){
   this.$$outer_0 = $$outer_0;
 }
 
-defineClass(21, 1, {}, DndFiles$lambda$2$Type);
+defineClass(22, 1, {}, DndFiles$lambda$2$Type);
 _.handleEvent = function handleEvent_1(arg0){
   $lambda$2(this.$$outer_0, arg0);
 }
 ;
-var Ldndfiles_client_DndFiles$lambda$2$Type_2_classLit = createForClass('dndfiles.client', 'DndFiles/lambda$2$Type', 21);
+var Ldndfiles_client_DndFiles$lambda$2$Type_2_classLit = createForClass('dndfiles.client', 'DndFiles/lambda$2$Type', 22);
 function DndFiles$lambda$3$Type($$outer_0){
   this.$$outer_0 = $$outer_0;
 }
@@ -993,6 +970,7 @@ _.onInvoke = function onInvoke(arg0){
   return $lambda$3(this.$$outer_0, arg0);
 }
 ;
+defineClass(450, 1, {});
 $clinit_Boolean();
 _ = provide('java.lang.Boolean');
 _.$isInstance = $isInstance;
@@ -1004,7 +982,6 @@ _ = provide('java.lang.Double');
 _.$isInstance = $isInstance_3;
 _ = provide('java.lang.Number');
 _.$isInstance = $isInstance_2;
-$clinit_String();
 _ = provide('java.lang.String');
 _.$isInstance = $isInstance_4;
 _ = provide('java.lang.Throwable');
