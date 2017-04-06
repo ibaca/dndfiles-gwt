@@ -1,9 +1,9 @@
 package dndfiles.client;
 
 import com.google.gwt.core.client.EntryPoint;
-import elemental2.*;
+import elemental2.dom.*;
 
-import static elemental2.Global.document;
+import static elemental2.dom.DomGlobal.document;
 
 // http://www.html5rocks.com/en/tutorials/file/dndfiles/
 public class DndFiles implements EntryPoint {
@@ -11,7 +11,7 @@ public class DndFiles implements EntryPoint {
 
     @Override
     public void onModuleLoad() {
-        HTMLInputElement file = (HTMLInputElement) Global.document.createElement("input");
+        HTMLInputElement file = (HTMLInputElement) document.createElement("input");
         file.type = "file"; file.id = "files"; file.name = "files[]"; file.multiple = true;
 
         out = (HTMLOutputElement) document.createElement("output");

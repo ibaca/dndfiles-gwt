@@ -16,7 +16,6 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <gwt.version>2.8.0-SNAPSHOT</gwt.version>
         <github.global.server>github</github.global.server>
     </properties>
 
@@ -25,7 +24,7 @@
             <dependency>
                 <groupId>com.google.gwt</groupId>
                 <artifactId>gwt</artifactId>
-                <version>${gwt.version}</version>
+                <version>HEAD-SNAPSHOT</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -36,22 +35,15 @@
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-user</artifactId>
-            <version>${gwt.version}</version>
         </dependency>
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-dev</artifactId>
-            <version>${gwt.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.google.jsinterop</groupId>
-            <artifactId>jsinterop-annotations</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.gwt</groupId>
-            <artifactId>elemental2-experimental</artifactId>
-            <version>16-06-30</version>
+            <groupId>com.google.elemental2</groupId>
+            <artifactId>elemental2-dom</artifactId>
+            <version>1.0.0-beta-1</version>
         </dependency>
     </dependencies>
 
@@ -83,7 +75,9 @@
                 <version>0.12</version>
                 <configuration>
                     <message>Creating site for ${project.version}</message>
-                    <outputDirectory>${project.build.directory}/${project.build.finalName}/dndfiles</outputDirectory>
+                    <outputDirectory>
+                        ${project.build.directory}/${project.build.finalName}/dndfiles
+                    </outputDirectory>
                 </configuration>
             </plugin>
         </plugins>
