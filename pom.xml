@@ -38,6 +38,11 @@
             <version>0.5.0</version>
         </dependency>
         <dependency>
+            <groupId>com.intendia.gwt.rxgwt</groupId>
+            <artifactId>rxgwt</artifactId>
+            <version>0.3</version>
+        </dependency>
+        <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-user</artifactId>
         </dependency>
@@ -58,15 +63,6 @@
                     <moduleName>dndfiles.DndFiles</moduleName>
                     <skipModule>true</skipModule>
                     <style>PRETTY</style>
-                    <compilerArgs>
-                        <arg>-generateJsInteropExports</arg>
-                    </compilerArgs>
-                    <codeserverArgs>
-                        <arg>-generateJsInteropExports</arg>
-                    </codeserverArgs>
-                    <devmodeArgs>
-                        <arg>-generateJsInteropExports</arg>
-                    </devmodeArgs>
                 </configuration>
             </plugin>
             <plugin>
