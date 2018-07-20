@@ -2,11 +2,11 @@ package dndfiles.client;
 
 import com.google.gwt.core.client.EntryPoint;
 import elemental2.dom.*;
+import io.reactivex.Observable;
 import org.jboss.gwt.elemento.core.Elements;
 import org.jboss.gwt.elemento.core.InputType;
-import rx.Observable;
 
-import static com.intendia.rxgwt.elemento.RxElemento.fromEvent;
+import static com.intendia.rxgwt2.elemento.RxElemento.fromEvent;
 import static elemental2.dom.DomGlobal.document;
 import static org.jboss.gwt.elemento.core.Elements.*;
 import static org.jboss.gwt.elemento.core.EventType.*;
