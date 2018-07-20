@@ -63,15 +63,11 @@ function dndfiles(){
       return;
     }
     var scriptFrame = $doc_0.createElement('iframe');
-    scriptFrame.src = 'javascript:""';
     scriptFrame.id = 'dndfiles';
     scriptFrame.style.cssText = 'position:absolute; width:0; height:0; border:none; left: -1000px;' + ' top: -1000px;';
     scriptFrame.tabIndex = -1;
     $doc_0.body.appendChild(scriptFrame);
-    frameDoc = scriptFrame.contentDocument;
-    if (!frameDoc) {
-      frameDoc = scriptFrame.contentWindow.document;
-    }
+    frameDoc = scriptFrame.contentWindow.document;
     frameDoc.open();
     var doctype = document.compatMode == 'CSS1Compat'?'<!doctype html>':'';
     frameDoc.write(doctype + '<html><head><\/head><body><\/body><\/html>');
@@ -375,11 +371,11 @@ function dndfiles(){
     }
     var strongName;
     try {
-      unflattenKeylistIntoAnswers(['ie8'], '452457AF7D7557D710E1E4C7FDCBAC78');
-      unflattenKeylistIntoAnswers(['ie9'], '8B18FB6AA2BB40140D556A3E64B974B5');
-      unflattenKeylistIntoAnswers(['gecko1_8'], '9E5F61022F7A29EE82333AED535737E8');
-      unflattenKeylistIntoAnswers(['safari'], 'AB11A955113499568ACB4D7A337FA9D3');
-      unflattenKeylistIntoAnswers(['ie10'], 'FF85AB725C02F9C16A40546C4D7D050E');
+      unflattenKeylistIntoAnswers(['ie8'], '28529E5452E9B341FBA649D8CA68A746');
+      unflattenKeylistIntoAnswers(['gecko1_8'], '36DEDAD9237C542A0F3601879EDC1730');
+      unflattenKeylistIntoAnswers(['ie9'], 'AE84FCC82FF96BE055C4E9CA99F8B84D');
+      unflattenKeylistIntoAnswers(['safari'], 'D0D7BEFF7C890142CBF388FAA34F93FB');
+      unflattenKeylistIntoAnswers(['ie10'], 'F5191A1D58C41EEF7529A390EC259B73');
       strongName = answers[computePropValue('user.agent')];
       var idx = strongName.indexOf(':');
       if (idx != -1) {
